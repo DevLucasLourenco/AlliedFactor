@@ -24,7 +24,7 @@ class MMC:
         
 
     @staticmethod
-    def __calcular_mdc(v1, v2):
+    def __calcular_mdc(v1, v2) -> int:
         while v2 != 0:
             v1, v2 = v2, v1 % v2
         return v1
