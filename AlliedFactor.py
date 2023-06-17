@@ -1,4 +1,3 @@
-
 class MMC:
 
     def __init__(self, lista_numeros: list):
