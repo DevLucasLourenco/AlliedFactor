@@ -29,7 +29,7 @@ class MMC:
         return v1
 
 
-    def informar_valores(self, lista_numeros: list):
+    def get(self, lista_numeros: list):
         self.__numeros = MMC.__processo_ternary_op(type(lista_numeros) if not isinstance(lista_numeros, list) else lista_numeros)
         self.__numeros = tuple([MMC.__validacao_numeros(x) for x in self.__numeros])
 
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     instancia = MMC()
 
     for x in [[90,80], [180,140], [90,80,200], [30,40,50]]:
-        instancia.informar_valores(x)
+        instancia.get(x)
         instancia.fatorar()
         
     print(instancia.valores)
