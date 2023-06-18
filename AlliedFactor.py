@@ -1,11 +1,10 @@
 class MMC:
 
-    def __init__(self, lista_numeros: list):
-        self.__numeros = MMC.__processo_ternary_op(type(lista_numeros) if not isinstance(lista_numeros, list) else lista_numeros)
-        self.__numeros = tuple([MMC.__validacao_numeros(x) for x in self.__numeros])
+    def __init__(self):
+        self.__numeros = ...
         self.valores = list()
-        self.fatorar()
-        
+        self.flag = False
+
 
     @staticmethod
     def __processo_ternary_op(item) -> TypeError:
@@ -30,20 +29,34 @@ class MMC:
         return v1
 
 
-    def fatorar(self):
-        qtd = len(self.__numeros)
-        if qtd < 2:
-            raise ValueError(f"É necessário fornecer pelo menos dois valores. Informado: {qtd} ")
+    def informar_valores(self, lista_numeros: list):
+        self.__numeros = MMC.__processo_ternary_op(type(lista_numeros) if not isinstance(lista_numeros, list) else lista_numeros)
+        self.__numeros = tuple([MMC.__validacao_numeros(x) for x in self.__numeros])
 
-        mmc = self.__numeros[0]
-        for i in range(len(self.__numeros)):
-            mmc = (mmc * self.__numeros[i]) // MMC.__calcular_mdc(mmc, self.__numeros[i])
-        self.valores.append(mmc)
+        self.flag = True
+
+
+    def fatorar(self):
+        if self.flag:
+            qtd = len(self.__numeros)
+            if qtd < 2:
+                raise ValueError(f"É necessário fornecer pelo menos dois valores. Informado: {qtd} ")
+
+            mmc = self.__numeros[0]
+            for i in range(len(self.__numeros)):
+                mmc = (mmc * self.__numeros[i]) // MMC.__calcular_mdc(mmc, self.__numeros[i])
+            self.valores.append(mmc)
+        
+        else:
+            raise RuntimeError(f"Tentiva de encontrar valores informados inválida. Passe os valores correspondentes.")
         
 
     
 if __name__ == "__main__":
-    for x in [[90,80],[180,140],[90,80,200]]:
-        calculo = MMC(x)
-        print(calculo.valores)
-  
+    instancia = MMC()
+
+    for x in [[90,80], [180,140], [90,80,200], [30,40,50]]:
+        instancia.informar_valores(x)
+        instancia.fatorar()
+        
+    print(instancia.valores)
