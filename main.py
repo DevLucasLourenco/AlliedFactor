@@ -6,12 +6,14 @@ class MMC:
         self.flag = False
 
 
+
     @staticmethod
     def __processo_ternary_op(item) -> TypeError:
         if not isinstance(item, list):
             raise TypeError(f"O objeto informado deve ser um objeto iterável do tipo |list|, não |{type(item).__name__}|")
         else:
             return item
+
 
 
     @staticmethod
@@ -22,11 +24,13 @@ class MMC:
             return item
         
 
+
     @staticmethod
     def __calcular_mdc(v1, v2) -> int:
         while v2 != 0:
             v1, v2 = v2, v1 % v2
         return v1
+
 
 
     def get(self, lista_numeros: list):
@@ -36,7 +40,8 @@ class MMC:
         self.flag = True
 
 
-    def fatorar(self):
+
+    def run(self):
         if self.flag:
             qtd = len(self.__numeros)
             if qtd < 2:
@@ -51,12 +56,28 @@ class MMC:
             raise RuntimeError(f"Tentiva de encontrar valores informados inválida. Passe os valores correspondentes.")
         
 
+
+    def clear(self) -> list.clear:
+        self.valores.clear()
+
     
 if __name__ == "__main__":
     instancia = MMC()
 
-    for x in [[90,80], [180,140], [90,80,200], [30,40,50]]:
+
+    # exemplo 1
+    instancia.get([90,80])
+    instancia.run()
+    print(instancia.valores)
+
+
+    # limpar lista de resultados
+    instancia.clear()
+
+
+    # exempl 2
+    for x in [[180,140], [90,80,200], [30,40,50]]:
         instancia.get(x)
-        instancia.fatorar()
+        instancia.run()
         
     print(instancia.valores)
