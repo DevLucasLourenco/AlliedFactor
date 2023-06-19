@@ -6,7 +6,6 @@ class MMC:
         self.flag = False
 
 
-
     @staticmethod
     def __processo_ternary_op(item) -> TypeError:
         if not isinstance(item, list):
@@ -15,15 +14,13 @@ class MMC:
             return item
 
 
-
     @staticmethod
     def __validacao_numeros(item) -> TypeError:
         if not isinstance(item, int):
             raise TypeError(f"Os dados do iterável devem ser objetos do tipo |int|, não |{type(item).__name__}|")
         else:
             return item
-        
-
+    
 
     @staticmethod
     def __calcular_mdc(v1, v2) -> int:
@@ -32,13 +29,11 @@ class MMC:
         return v1
 
 
-
     def get(self, lista_numeros: list):
         self.__numeros = MMC.__processo_ternary_op(type(lista_numeros) if not isinstance(lista_numeros, list) else lista_numeros)
         self.__numeros = tuple([MMC.__validacao_numeros(x) for x in self.__numeros])
 
         self.flag = True
-
 
 
     def run(self):
@@ -56,16 +51,16 @@ class MMC:
             raise RuntimeError(f"Tentiva de encontrar valores informados inválida. Passe os valores correspondentes.")
         
 
-
     def clear(self) -> list.clear:
         self.valores.clear()
 
+    
     
 if __name__ == "__main__":
     instancia = MMC()
 
 
-    # exemplo 1
+    # exemplo1
     instancia.get([90,80])
     instancia.run()
     print(instancia.valores)
@@ -75,7 +70,7 @@ if __name__ == "__main__":
     instancia.clear()
 
 
-    # exempl 2
+    # exemplo2
     for x in [[180,140], [90,80,200], [30,40,50]]:
         instancia.get(x)
         instancia.run()
